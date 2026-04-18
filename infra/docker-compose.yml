@@ -1,0 +1,25 @@
+services:
+  # NoSQL database for initial data ingestion (Bronze Zone)
+  mongodb:
+    image: mongo:latest
+    container_name: hr_pro_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  # SQL database for final processed data (Silver/Gold Zone)
+  mysql:
+    image: mysql:8.0
+    container_name: hr_pro_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: hr_pro_db
+    ports:
+      - "3307:3306" # Change the external port to 3307
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mongodb_data:
+  mysql_data:
