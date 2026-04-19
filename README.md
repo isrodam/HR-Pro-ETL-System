@@ -30,3 +30,5 @@ El sistema sigue un flujo de datos profesional dividido en tres capas:
 ├── tests/              # Pruebas unitarias
 ├── pyproject.toml      # Configuración de uv
 └── README.md
+
+Status (2026-04-18): Infrastructure ready (MongoDB & MySQL on port 3307). Kafka consumer script created and dependencies installed via uv.
