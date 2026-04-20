@@ -1,34 +1,46 @@
 # HR-Pro ETL System 🚀
 
-## 📝 Descripción del Proyecto
-Este proyecto consiste en el diseño e implementación de un sistema **ETL (Extract, Transform, Load)** robusto para la empresa líder en recursos humanos **"HR Pro"**. El objetivo es gestionar grandes volúmenes de datos generados en tiempo real (eventos de Kafka) sobre empleados, nóminas y selección, asegurando su persistencia y calidad.
+## 📝 Project Description
+This project involves the design and implementation of a robust **ETL (Extract, Transform, Load)** system for the human resources leader **"HR Pro"**. The goal is to manage large volumes of real-time data (Kafka events) regarding employees, payroll, and recruitment, ensuring data persistence and quality.
 
-## 🏗️ Arquitectura del Sistema
-El sistema sigue un flujo de datos profesional dividido en tres capas:
-1.  **Ingesta:** Consumo de eventos en tiempo real desde **Apache Kafka**.
-2.  **Almacenamiento NoSQL (Bronze):** Persistencia de mensajes en bruto en **MongoDB**.
-3.  **Procesamiento y Carga (Gold):** Limpieza y normalización de datos con **Pandas** y carga final en **MySQL**.
+## 🏗️ System Architecture
+The system follows a professional data flow divided into three layers:
+1.  **Ingestion:** Real-time event consumption from **Apache Kafka**.
+2.  **NoSQL Storage (Bronze):** Raw message persistence in **MongoDB**.
+3.  **Processing & Loading (Gold):** Data cleaning and normalization using **Pandas**, with final loading into **MySQL**.
 
 
 
-## 🛠️ Stack Tecnológico
-* **Lenguaje:** Python 3.12+
-* **Gestor de Dependencias:** [uv](https://github.com/astral-sh/uv)
-* **Mensajería:** Apache Kafka
-* **Bases de Datos:** MongoDB (NoSQL) y MySQL (Relacional)
-* **Infraestructura:** Docker & Docker Compose
-* **Calidad de Código:** Ruff (Linter & Formatter)
+## 🛠️ Tech Stack
+* **Language:** Python 3.12+
+* **Dependency Manager:** [uv](https://github.com/astral-sh/uv)
+* **Messaging:** Apache Kafka
+* **Databases:** MongoDB (NoSQL) & MySQL (Relational)
+* **Infrastructure:** Docker & Docker Compose
+* **Code Quality:** Ruff (Linter & Formatter)
 
-## 📂 Estructura del Proyecto
+## 📂 Project Structure
 ```text
-├── .github/workflows/  # Automatización CI/CD (Ruff checks)
-├── infra/              # Configuración de Docker (Kafka, DBs)
-├── src/                # Código fuente
-│   ├── consumer/       # Lector de Kafka
-│   ├── processing/     # Transformación con Pandas
-│   └── database/       # Conectores de base de datos
-├── tests/              # Pruebas unitarias
-├── pyproject.toml      # Configuración de uv
-└── README.md
+├── .github/workflows/  # CI/CD Automation (Ruff checks)
+├── infra/              # Docker configuration (Kafka, DBs)
+├── src/                # Source code
+│   ├── consumer/       # Kafka consumer logic
+│   ├── processing/     # Data transformation with Pandas
+│   └── database/       # Database connectors
+├── tests/              # Unit tests
 
-Status (2026-04-18): Infrastructure ready (MongoDB & MySQL on port 3307). Kafka consumer script created and dependencies installed via uv.
+## 🚀 Quick Start for the Team
+
+    Spin up infrastructure: ```bash
+    cd infra && docker-compose up -d
+
+
+    Create Kafka topic (only required once):
+    Bash
+
+    docker exec -it infra-kafka-1 kafka-topics --create --topic hr_pro_data --bootstrap-server localhost:9092
+
+    Run the consumer:
+    Bash
+
+    python -m src.consumer.kafka_consumer
